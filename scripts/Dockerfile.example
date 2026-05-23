@@ -1,0 +1,18 @@
+# Dockerfile 示例：构建自定义Nginx镜像
+# 用法: docker build -t my-nginx:v1 .
+
+FROM nginx:latest
+
+LABEL maintainer="YURM <steam3836@foxmail.com>"
+
+# 复制自定义配置
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# 复制静态文件
+COPY html/ /usr/share/nginx/html/
+
+# 暴露端口
+EXPOSE 80
+
+# 启动命令
+CMD ["nginx", "-g", "daemon off;"]
