@@ -1,0 +1,26 @@
+# 网络工程知识库
+
+从大学课程作业中提炼的结构化知识库，涵盖网络工程核心技能。
+
+## 内容
+
+- 运维自动化（环境准备、Ansible、Zabbix、Docker）
+- 虚拟化技术（VMware vSphere）
+- 网络安全（防火墙、Linux攻防）
+- 无线网络（WLAN、Wi-Fi 6）
+
+## 文件结构
+
+```
+modules/          # 8个知识模块
+scripts/          # 自动化脚本
+cheatsheet.md     # 速查表
+```
+
+## 使用
+
+```bash
+git clone https://github.com/RM3836/network-engineering-kb.git
+cd network-engineering-kb
+cat cheatsheet.md
+```

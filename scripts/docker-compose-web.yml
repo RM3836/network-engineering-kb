@@ -1,0 +1,35 @@
+# Nginx + Tomcat 动静分离 (Docker Compose)
+# 用法: docker compose -f docker-compose-web.yml up -d
+# 静态: http://localhost  动态: http://localhost:8080
+
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /data/static:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - tomcat
+    networks:
+      - web-net
+
+  tomcat:
+    image: tomcat:9.0-jdk17
+    container_name: tomcat-app
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - /data/tomcat/webapps:/usr/local/tomcat/webapps
+    networks:
+      - web-net
+
+networks:
+  web-net:
+    driver: bridge
